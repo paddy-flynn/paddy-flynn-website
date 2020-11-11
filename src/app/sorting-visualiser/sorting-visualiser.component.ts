@@ -9,12 +9,14 @@ export class SortingVisualiserComponent implements OnInit {
 
   array: number[] = [];
   public innerWidth: any;
+  public innerHeight: any;
 
   constructor() {
   }
 
   ngOnInit(): void {
     this.innerWidth = window.innerWidth;
+    this.innerHeight = window.innerHeight;
     this.resetArray();
   }
 
@@ -26,15 +28,13 @@ export class SortingVisualiserComponent implements OnInit {
 
   getRandomNumber(): number {
     const min = 5;
-    const max = 730;
+    const max = innerHeight * .92;
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
 
   getAvailableArraySize(): number {
     const remainingScreenPercentAfterViewPortPadding = .8;
     const barWidthPlusMargin = 5 + 1 + 1;
-    const arraySize = (this.innerWidth * remainingScreenPercentAfterViewPortPadding) / barWidthPlusMargin;
-    console.log('Array size: ' + arraySize);
-    return arraySize;
+    return (this.innerWidth * remainingScreenPercentAfterViewPortPadding) / barWidthPlusMargin;
   }
 }
