@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {BubbleSortService} from '../algorithms/bubble-sort.service';
 
 @Component({
   selector: 'sorting-visualiser',
@@ -11,7 +12,7 @@ export class SortingVisualiserComponent implements OnInit {
   public innerWidth: any;
   public innerHeight: any;
 
-  constructor() {
+  constructor(private bubbleSortService: BubbleSortService) {
   }
 
   ngOnInit(): void {
@@ -37,5 +38,9 @@ export class SortingVisualiserComponent implements OnInit {
     const remainingScreenPercentAfterViewPortPadding = .8;
     const barWidthPlusMargin = 5 + 1 + 1;
     return (this.innerWidth * remainingScreenPercentAfterViewPortPadding) / barWidthPlusMargin;
+  }
+
+  sort(): void {
+    this.bubbleSortService.sort(this.array);
   }
 }

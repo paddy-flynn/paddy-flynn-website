@@ -1,5 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-white">
-  <button class="custom-toggler navbar-toggler bg-white" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+  <button class="custom-toggler navbar-toggler bg-white" type="button" data-toggle="collapse"
+          data-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -36,6 +37,7 @@
       </li>
       <li class="nav-item">
         <button class="nav-link btn btn-light bg-white border-white"
+                (click)="sort()"
                 data-toggle="collapse"
                 data-target=".navbar-collapse.show">Sort!
         </button>
