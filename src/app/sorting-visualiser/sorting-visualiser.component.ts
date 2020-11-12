@@ -21,6 +21,7 @@ export class SortingVisualiserComponent implements OnInit {
   }
 
   resetArray(): void {
+    this.array = [];
     for (let i = 0; i < this.getAvailableArraySize(); i++) {
       this.array.push(this.getRandomNumber());
     }
@@ -28,7 +29,7 @@ export class SortingVisualiserComponent implements OnInit {
 
   getRandomNumber(): number {
     const min = 5;
-    const max = innerHeight * .92;
+    const max = innerHeight * .9;
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
 

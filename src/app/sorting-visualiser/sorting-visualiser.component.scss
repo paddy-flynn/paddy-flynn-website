@@ -1,4 +1,4 @@
-.visualiser{
+.visualiser {
   position: absolute;
   padding-left: 9vw;
   padding-right: 9vw;
@@ -8,6 +8,32 @@
 .bar {
   width: 5px;
   margin: 0 1px;
-  background: hotpink;
+  background: #1862c6;
   display: inline-block;
+}
+
+.btn-light {
+  color: #6e84a3;
+}
+
+.dropdown-menu {
+  background: #f8f9fa !important;
+}
+
+.dropdown-item {
+  background: #f8f9fa !important;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: #6e84a3;
+}
+
+.navbar-nav .nav-item:not(:last-child) {
+  border-right: 1px solid silver;
+}
+
+@media (max-width: 768px) {
+  .navbar-nav .nav-item:not(:last-child) {
+    border-right: none;
+  }
 }
