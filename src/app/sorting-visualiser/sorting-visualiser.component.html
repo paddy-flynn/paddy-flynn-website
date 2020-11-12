@@ -1,27 +1,31 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+<nav class="navbar navbar-expand-lg navbar-light bg-white">
+  <button class="custom-toggler navbar-toggler bg-white" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <div class="collapse navbar-collapse bg-white " id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <button class="nav-link btn btn-light" (click)="resetArray()"
+      <li class="nav-item bg-white">
+        <button class="nav-link btn btn-light bg-white border-white" (click)="resetArray()"
                 data-toggle="collapse"
                 data-target=".navbar-collapse.show">Generate New Array
         </button>
       </li>
       <li class="nav-item dropdown">
-        <button class="nav-link dropdown-toggle btn btn-light" id="navbarDropdown"
+        <button class="nav-link dropdown-toggle btn btn-light bg-white border-white" id="navbarDropdown"
                 role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
           Sorting Algorithms
         </button>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <button class="dropdown-item btn btn-light"
+        <div class="dropdown-menu bg-white border-white" aria-labelledby="navbarDropdown">
+          <button class="dropdown-item btn btn-light bg-white border-white"
                   data-toggle="collapse"
                   data-target=".navbar-collapse.show">Bubble Sort
+          </button>
+          <button class="dropdown-item btn btn-light bg-white border-white"
+                  data-toggle="collapse"
+                  data-target=".navbar-collapse.show">Merge Sort
           </button>
         </div>
       </li>
@@ -31,7 +35,7 @@
         <div class="nav-link">Selected Algorithms: Bubble Sort</div>
       </li>
       <li class="nav-item">
-        <button class="nav-link btn btn-light"
+        <button class="nav-link btn btn-light bg-white border-white"
                 data-toggle="collapse"
                 data-target=".navbar-collapse.show">Sort!
         </button>
