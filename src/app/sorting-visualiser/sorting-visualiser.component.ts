@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {BubbleSortService} from '../algorithms/bubble-sort.service';
+import {Animation} from '../interfaces/animation';
 
 @Component({
   selector: 'sorting-visualiser',
@@ -8,6 +9,8 @@ import {BubbleSortService} from '../algorithms/bubble-sort.service';
 })
 export class SortingVisualiserComponent implements OnInit {
 
+  const;
+  ANIMATION_SPEED_MS = .001;
   array: number[] = [];
   public innerWidth: any;
   public innerHeight: any;
@@ -23,6 +26,7 @@ export class SortingVisualiserComponent implements OnInit {
 
   resetArray(): void {
     this.array = [];
+
     for (let i = 0; i < this.getAvailableArraySize(); i++) {
       this.array.push(this.getRandomNumber());
     }
@@ -41,6 +45,42 @@ export class SortingVisualiserComponent implements OnInit {
   }
 
   sort(): void {
-    this.bubbleSortService.sort(this.array);
+    const animations = this.bubbleSortService.sort(this.array);
+    this.runAnimations(animations);
+  }
+
+  async runAnimations(animations: Animation[]): Promise<void> {
+
+    for (const ani of animations) {
+      const barOneStyle = document.getElementById('' + ani.barOneId).style;
+
+      if (ani.isInCorrectPosition) {
+        // await this.delay(timeout).then(() => {
+        barOneStyle.background = 'green';
+        barOneStyle.height = ani.barOneHeight + 'px';
+        // });
+      } else {
+        const barTwoStyle = document.getElementById('' + ani.barTwoId).style;
+
+        await this.delay(this.ANIMATION_SPEED_MS).then(() => {
+          barOneStyle.background = 'red';
+          barTwoStyle.background = 'red';
+          barOneStyle.height = ani.barOneHeight + 'px';
+          barTwoStyle.height = ani.barTwoHeight + 'px';
+        });
+
+        await this.delay(this.ANIMATION_SPEED_MS).then(() => {
+          barOneStyle.background = '#1862c6';
+          barTwoStyle.background = '#1862c6';
+        });
+      }
+    }
+  }
+
+  delay(ms): Promise<any> {
+    return new Promise(resolve => {
+      // clearTimeout(ms);
+      setTimeout(resolve, ms);
+    });
   }
 }

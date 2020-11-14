@@ -46,5 +46,5 @@
   </div>
 </nav>
 <diV class="visualiser">
-  <array-bar class="bar" *ngFor="let num of array" [value]="num"></array-bar>
+  <div class="bar" *ngFor="let num of array; index as i" id="{{i}}" [style.height.px]="num"></div>
 </diV>

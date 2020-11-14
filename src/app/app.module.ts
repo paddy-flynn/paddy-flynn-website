@@ -6,13 +6,11 @@ import { AppComponent } from './app.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SortingVisualiserComponent } from './sorting-visualiser/sorting-visualiser.component';
-import { ArrayBarComponent } from './array-bar/array-bar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SortingVisualiserComponent,
-    ArrayBarComponent
+    SortingVisualiserComponent
   ],
   imports: [
     BrowserModule,
