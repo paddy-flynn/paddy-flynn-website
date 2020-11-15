@@ -21,19 +21,17 @@
         </button>
         <div class="dropdown-menu bg-white border-white" aria-labelledby="navbarDropdown">
           <button class="dropdown-item btn btn-light bg-white border-white"
-                  data-toggle="collapse"
-                  data-target=".navbar-collapse.show">Bubble Sort
+                  (click)="selectBubbleSort()">Bubble Sort
           </button>
           <button class="dropdown-item btn btn-light bg-white border-white"
-                  data-toggle="collapse"
-                  data-target=".navbar-collapse.show">Merge Sort
+                  (click)="selectQuickSort()">Quick Sort
           </button>
         </div>
       </li>
     </ul>
-    <ul class="navbar-nav ml-auto">
+    <ul *ngIf="selectedAlgo" class="navbar-nav ml-auto">
       <li class="nav-item">
-        <div class="nav-link">Selected Algorithms: Bubble Sort</div>
+        <div class="nav-link">Selected Algorithms: {{selectedAlgo}}</div>
       </li>
       <li class="nav-item">
         <button class="nav-link btn btn-light bg-white border-white"

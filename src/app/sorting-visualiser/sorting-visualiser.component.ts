@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {BubbleSortService} from '../algorithms/bubble-sort.service';
 import {Animation} from '../interfaces/animation';
+import {Algorithms} from '../enum/algorithms.enum';
 
 @Component({
   selector: 'sorting-visualiser',
@@ -9,6 +10,7 @@ import {Animation} from '../interfaces/animation';
 })
 export class SortingVisualiserComponent implements OnInit {
 
+  selectedAlgo: Algorithms;
   ANIMATION_SPEED_MS = 1;
   array: number[] = [];
   public innerWidth: any;
@@ -28,7 +30,7 @@ export class SortingVisualiserComponent implements OnInit {
 
     for (let i = 0; i < this.getAvailableArraySize(); i++) {
       this.array.push(this.getRandomNumber());
-      const element = document.getElementById('' + i);
+      const element = document.getElementById(i.toString());
       if (element) {
         element.style.background = '#1862c6';
       }
@@ -55,13 +57,13 @@ export class SortingVisualiserComponent implements OnInit {
   async runAnimations(animations: Animation[]): Promise<void> {
 
     for (const ani of animations) {
-      const barOneStyle = document.getElementById('' + ani.barOneId).style;
+      const barOneStyle = document.getElementById(ani.barOneId.toString()).style;
 
       if (ani.isInCorrectPosition) {
         barOneStyle.background = 'green';
         barOneStyle.height = ani.barOneHeight + 'px';
       } else {
-        const barTwoStyle = document.getElementById('' + ani.barTwoId).style;
+        const barTwoStyle = document.getElementById(ani.barTwoId.toString()).style;
 
         barOneStyle.background = 'red';
         barTwoStyle.background = 'red';
@@ -71,15 +73,23 @@ export class SortingVisualiserComponent implements OnInit {
         await this.delay(this.ANIMATION_SPEED_MS);
         barOneStyle.background = '#1862c6';
         barTwoStyle.background = '#1862c6';
-
       }
     }
   }
 
   delay(ms): Promise<any> {
     return new Promise(resolve => {
-      // clearTimeout(ms);
       setTimeout(resolve, ms);
     });
+  }
+
+  selectBubbleSort(): void {
+    this.selectedAlgo = Algorithms.BUBBLE_SORT;
+    console.log(this.selectedAlgo);
+  }
+
+  selectQuickSort(): void {
+    this.selectedAlgo = Algorithms.QUICK_SORT;
+    console.log(this.selectedAlgo);
   }
 }
