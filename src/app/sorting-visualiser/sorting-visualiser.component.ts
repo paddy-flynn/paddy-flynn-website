@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {BubbleSortService} from '../algorithms/bubble-sort.service';
 import {Animation} from '../interfaces/animation';
 import {Algorithms} from '../enum/algorithms.enum';
+import {QuickSortService} from '../algorithms/quick-sort.service';
 
 @Component({
   selector: 'sorting-visualiser',
@@ -11,12 +12,12 @@ import {Algorithms} from '../enum/algorithms.enum';
 export class SortingVisualiserComponent implements OnInit {
 
   selectedAlgo: Algorithms;
-  ANIMATION_SPEED_MS = 1;
   array: number[] = [];
   public innerWidth: any;
   public innerHeight: any;
 
-  constructor(private bubbleSortService: BubbleSortService) {
+  constructor(private bubbleSortService: BubbleSortService,
+              private quickSortService: QuickSortService) {
   }
 
   ngOnInit(): void {
@@ -50,46 +51,33 @@ export class SortingVisualiserComponent implements OnInit {
   }
 
   sort(): void {
-    const animations = this.bubbleSortService.sort(this.array);
-    this.runAnimations(animations);
-  }
-
-  async runAnimations(animations: Animation[]): Promise<void> {
-
-    for (const ani of animations) {
-      const barOneStyle = document.getElementById(ani.barOneId.toString()).style;
-
-      if (ani.isInCorrectPosition) {
-        barOneStyle.background = 'green';
-        barOneStyle.height = ani.barOneHeight + 'px';
-      } else {
-        const barTwoStyle = document.getElementById(ani.barTwoId.toString()).style;
-
-        barOneStyle.background = 'red';
-        barTwoStyle.background = 'red';
-        barOneStyle.height = ani.barOneHeight + 'px';
-        barTwoStyle.height = ani.barTwoHeight + 'px';
-
-        await this.delay(this.ANIMATION_SPEED_MS);
-        barOneStyle.background = '#1862c6';
-        barTwoStyle.background = '#1862c6';
+    switch (this.selectedAlgo) {
+      case Algorithms.BUBBLE_SORT: {
+        const animations = this.bubbleSortService.sort(this.array);
+        this.bubbleSortService.runAnimation(animations);
+        break;
+      }
+      case Algorithms.QUICK_SORT: {
+        console.log(this.array);
+        const qArr = this.quickSortService.sort(this.array);
+        console.log(qArr);
+        this.array.sort((a, b) => a - b);
+        console.log('Sorted: ' + (qArr === this.array));
+        break;
+      }
+      default: {
+        console.log('Implement: ' + this.selectedAlgo);
+        break;
       }
     }
   }
 
-  delay(ms): Promise<any> {
-    return new Promise(resolve => {
-      setTimeout(resolve, ms);
-    });
-  }
 
   selectBubbleSort(): void {
     this.selectedAlgo = Algorithms.BUBBLE_SORT;
-    console.log(this.selectedAlgo);
   }
 
   selectQuickSort(): void {
     this.selectedAlgo = Algorithms.QUICK_SORT;
-    console.log(this.selectedAlgo);
   }
 }

@@ -5,6 +5,7 @@ import {Animation} from '../interfaces/animation';
   providedIn: 'root'
 })
 export class BubbleSortService {
+  ANIMATION_SPEED_MS = 1;
 
   constructor() {
   }
@@ -61,5 +62,34 @@ export class BubbleSortService {
     };
     animations.push(correctPosAni1);
     return animations;
+  }
+
+  async runAnimation(animations: Animation[]): Promise<void> {
+
+    for (const ani of animations) {
+      const barOneStyle = document.getElementById(ani.barOneId.toString()).style;
+
+      if (ani.isInCorrectPosition) {
+        barOneStyle.background = 'green';
+        barOneStyle.height = ani.barOneHeight + 'px';
+      } else {
+        const barTwoStyle = document.getElementById(ani.barTwoId.toString()).style;
+
+        barOneStyle.background = 'red';
+        barTwoStyle.background = 'red';
+        barOneStyle.height = ani.barOneHeight + 'px';
+        barTwoStyle.height = ani.barTwoHeight + 'px';
+
+        await this.delay(this.ANIMATION_SPEED_MS);
+        barOneStyle.background = '#1862c6';
+        barTwoStyle.background = '#1862c6';
+      }
+    }
+  }
+
+  delay(ms): Promise<any> {
+    return new Promise(resolve => {
+      setTimeout(resolve, ms);
+    });
   }
 }
