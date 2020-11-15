@@ -9,8 +9,7 @@ import {Animation} from '../interfaces/animation';
 })
 export class SortingVisualiserComponent implements OnInit {
 
-  const;
-  ANIMATION_SPEED_MS = .001;
+  ANIMATION_SPEED_MS = 1;
   array: number[] = [];
   public innerWidth: any;
   public innerHeight: any;
@@ -29,6 +28,10 @@ export class SortingVisualiserComponent implements OnInit {
 
     for (let i = 0; i < this.getAvailableArraySize(); i++) {
       this.array.push(this.getRandomNumber());
+      const element = document.getElementById('' + i);
+      if (element) {
+        element.style.background = '#1862c6';
+      }
     }
   }
 
@@ -55,24 +58,20 @@ export class SortingVisualiserComponent implements OnInit {
       const barOneStyle = document.getElementById('' + ani.barOneId).style;
 
       if (ani.isInCorrectPosition) {
-        // await this.delay(timeout).then(() => {
         barOneStyle.background = 'green';
         barOneStyle.height = ani.barOneHeight + 'px';
-        // });
       } else {
         const barTwoStyle = document.getElementById('' + ani.barTwoId).style;
 
-        await this.delay(this.ANIMATION_SPEED_MS).then(() => {
-          barOneStyle.background = 'red';
-          barTwoStyle.background = 'red';
-          barOneStyle.height = ani.barOneHeight + 'px';
-          barTwoStyle.height = ani.barTwoHeight + 'px';
-        });
+        barOneStyle.background = 'red';
+        barTwoStyle.background = 'red';
+        barOneStyle.height = ani.barOneHeight + 'px';
+        barTwoStyle.height = ani.barTwoHeight + 'px';
 
-        await this.delay(this.ANIMATION_SPEED_MS).then(() => {
-          barOneStyle.background = '#1862c6';
-          barTwoStyle.background = '#1862c6';
-        });
+        await this.delay(this.ANIMATION_SPEED_MS);
+        barOneStyle.background = '#1862c6';
+        barTwoStyle.background = '#1862c6';
+
       }
     }
   }
